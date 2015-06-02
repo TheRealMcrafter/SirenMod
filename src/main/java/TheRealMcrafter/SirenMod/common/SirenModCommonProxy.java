@@ -30,6 +30,7 @@ import TheRealMcrafter.SirenMod.tiles.ProximitySensorTileEntity;
 import TheRealMcrafter.SirenMod.tiles.SirenControllerTileEntity;
 import TheRealMcrafter.SirenMod.tiles.SirenPoleTileEntity;
 import TheRealMcrafter.SirenMod.tiles.SprinklerTileEntity;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -157,5 +158,9 @@ public class SirenModCommonProxy implements IGuiHandler {
 
 	public void playSound(World world, int x, int y, int z, String soundName){
 	
+	}
+	
+	public void postInit(FMLPostInitializationEvent event){
+		
 	}
 }

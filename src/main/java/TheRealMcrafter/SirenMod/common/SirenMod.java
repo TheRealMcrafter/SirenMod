@@ -25,19 +25,23 @@ import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
-@Mod(modid = SirenMod.modID, version = "3.1.0", name = "TheRealMcrafter's SirenMod")
+@Mod(modid = SirenMod.modID, version = SirenMod.VERSION, name = "TheRealMcrafter's SirenMod")
 
 public class SirenMod {
 	@Instance(value="SirenMod")
 	public static SirenMod instance;
 	public static final String modID = "SirenMod";
+	public static final String VERSION = "4.0.0";
 	public static CreativeTabs SirenModCreativeTab = new SirenModCreativeTab(CreativeTabs.getNextID(), "TheRealMcrafter's Siren Mod");
 	@SidedProxy(clientSide = "TheRealMcrafter.SirenMod.client.SirenModClientProxy", serverSide = "TheRealMcrafter.SirenMod.common.SirenModCommonProxy") //Tells Forge the location of your proxies
 	public static SirenModCommonProxy proxy;
+	public static VersionChecker versionChecker;
+	public static boolean haveWarnedVersionOutOfDate = false;
 	
 //Config options
 	public static boolean generateSiliconOre;
@@ -68,13 +72,11 @@ public class SirenMod {
 @EventHandler
 	public void preInit(FMLPreInitializationEvent event) {		
 		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
-
 		config.load();
-
 		this.generateSiliconOre = config.get(config.CATEGORY_GENERAL, "Generate Silicon Ore?", true).getBoolean(true);	
-		
 		config.save();
 	}
+
 @EventHandler
 	public void load(FMLInitializationEvent event) {
 		
@@ -136,12 +138,13 @@ public class SirenMod {
 																			"I",
 																			"I",
 				'I', Items.iron_ingot);
-		
-		
-		
-		
-		
+			
 		SirenModPacketDispatcher.registerPackets();
+	}
+
+@EventHandler
+	public void postInit(FMLPostInitializationEvent event){
+		proxy.postInit(event);
 	}
 
 

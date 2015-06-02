@@ -13,7 +13,9 @@ import TheRealMcrafter.SirenMod.client.render.ProximitySensorRenderer;
 import TheRealMcrafter.SirenMod.client.render.SirenControllerRenderer;
 import TheRealMcrafter.SirenMod.client.render.SirenPoleRenderer;
 import TheRealMcrafter.SirenMod.client.render.SprinklerRenderer;
+import TheRealMcrafter.SirenMod.common.SirenMod;
 import TheRealMcrafter.SirenMod.common.SirenModCommonProxy;
+import TheRealMcrafter.SirenMod.common.VersionChecker;
 import TheRealMcrafter.SirenMod.tiles.AmericanSignalT121TileEntity;
 import TheRealMcrafter.SirenMod.tiles.BurglarSirenTileEntity;
 import TheRealMcrafter.SirenMod.tiles.FireAlarmTileEntity;
@@ -25,6 +27,8 @@ import TheRealMcrafter.SirenMod.tiles.SirenControllerTileEntity;
 import TheRealMcrafter.SirenMod.tiles.SirenPoleTileEntity;
 import TheRealMcrafter.SirenMod.tiles.SprinklerTileEntity;
 import cpw.mods.fml.client.registry.ClientRegistry;
+import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
 public class SirenModClientProxy extends SirenModCommonProxy {
@@ -53,4 +57,13 @@ public class SirenModClientProxy extends SirenModCommonProxy {
 		return (ctx.side.isClient() ? Minecraft.getMinecraft().thePlayer : super.getPlayerEntity(ctx));
 	}
 	
+@Override
+	public void postInit(FMLPostInitializationEvent event){
+		super.postInit(event);
+		
+		System.err.println("Client Proxy Called!");
+		SirenMod.versionChecker = new VersionChecker();
+		Thread versionCheckThread = new Thread(SirenMod.versionChecker, "Version Check");
+		versionCheckThread.start();
+	}
 }

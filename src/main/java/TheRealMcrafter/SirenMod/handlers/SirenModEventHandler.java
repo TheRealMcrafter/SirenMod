@@ -9,8 +9,11 @@ import net.minecraft.entity.ai.EntityAIPanic;
 import net.minecraft.entity.ai.EntityAITasks.EntityAITaskEntry;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityVillager;
+import net.minecraft.event.ClickEvent;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.ChatStyle;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
@@ -27,7 +30,9 @@ import TheRealMcrafter.SirenMod.common.SirenMod;
 import TheRealMcrafter.SirenMod.entity.ai.VillagerAIPanic;
 import TheRealMcrafter.SirenMod.tiles.GeneralSirenTileEntity;
 import cpw.mods.fml.common.eventhandler.Event;
+import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
 
 public class SirenModEventHandler{
 	
@@ -73,6 +78,21 @@ public class SirenModEventHandler{
 			((EntityCreature) event.entity).tasks.addTask(11, new VillagerAIPanic((EntityCreature) event.entity, 0.97D));
 		}
 	}
+
+
+@SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
+	public void onEvent(PlayerTickEvent event){
+  
+    if (!SirenMod.haveWarnedVersionOutOfDate && event.player.worldObj.isRemote && !SirenMod.versionChecker.isLatestVersion()){
+        ClickEvent versionCheckChatClickEvent = new ClickEvent(ClickEvent.Action.OPEN_URL, "http://sirenmod.wikia.com/wiki/Category:Downloads");
+        ChatStyle clickableChatStyle = new ChatStyle().setChatClickEvent(versionCheckChatClickEvent);
+        ChatComponentText versionWarningChatComponent = new ChatComponentText("There is a new version of SirenMod available! Click here to go to the downloads page.");
+        versionWarningChatComponent.setChatStyle(clickableChatStyle);
+        event.player.addChatMessage(versionWarningChatComponent);
+        SirenMod.haveWarnedVersionOutOfDate = true;
+    }
+  
+}
 
 
 }
