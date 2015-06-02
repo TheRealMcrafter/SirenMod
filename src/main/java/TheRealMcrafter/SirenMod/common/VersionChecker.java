@@ -19,8 +19,6 @@ public class VersionChecker implements Runnable
     @Override
     public void run() 
     {
-		System.err.println("Version Checker Called!");
-
         InputStream in = null;
         try 
         {
@@ -50,12 +48,6 @@ public class VersionChecker implements Runnable
         }
         
         isLatestVersion = SirenMod.VERSION.equals(latestVersion);
-        
-        if (!SirenMod.VERSION.equals(latestVersion)){
-        	System.out.println("You are not running the latest version of SirenMod!");
-        } else {
-        	System.out.println("You are running the latest version of SirenMod!");
-        }
     }
     
     public boolean isLatestVersion()

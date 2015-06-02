@@ -60,8 +60,6 @@ public class SirenModClientProxy extends SirenModCommonProxy {
 @Override
 	public void postInit(FMLPostInitializationEvent event){
 		super.postInit(event);
-		
-		System.err.println("Client Proxy Called!");
 		SirenMod.versionChecker = new VersionChecker();
 		Thread versionCheckThread = new Thread(SirenMod.versionChecker, "Version Check");
 		versionCheckThread.start();

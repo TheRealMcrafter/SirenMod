@@ -164,7 +164,7 @@ public TileEntity createNewTileEntity(World world, int meta) {
 				}
 			}
 			
-			System.err.println(blockPosX + ":" + blockPosY + ":" + blockPosZ);
+
 		}
 		return true;
 	}

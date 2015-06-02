@@ -79,7 +79,6 @@ public class SirenControllerTileEntity extends TileEntity {
 	}
 	
 	public void buttonPress(String button){
-		System.err.println(button);
 		if (this.state == ""){
 			return;
 		}

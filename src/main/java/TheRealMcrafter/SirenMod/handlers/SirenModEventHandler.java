@@ -1,6 +1,7 @@
 package TheRealMcrafter.SirenMod.handlers;
 
 import net.minecraft.block.Block;
+import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
@@ -9,6 +10,7 @@ import net.minecraft.entity.ai.EntityAIPanic;
 import net.minecraft.entity.ai.EntityAITasks.EntityAITaskEntry;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityVillager;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.event.ClickEvent;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -77,22 +79,16 @@ public class SirenModEventHandler{
 		if (event.entity instanceof EntityVillager){
 			((EntityCreature) event.entity).tasks.addTask(11, new VillagerAIPanic((EntityCreature) event.entity, 0.97D));
 		}
+		
+		if (event.entity instanceof EntityPlayer){
+			if (!SirenMod.haveWarnedVersionOutOfDate && event.entity.worldObj.isRemote && !SirenMod.versionChecker.isLatestVersion()){
+		    	ClickEvent versionCheckChatClickEvent = new ClickEvent(ClickEvent.Action.OPEN_URL, "http://sirenmod.wikia.com/wiki/Category:Downloads");
+		        ChatStyle clickableChatStyle = new ChatStyle().setChatClickEvent(versionCheckChatClickEvent);
+		        ChatComponentText versionWarningChatComponent = new ChatComponentText("There is a new version of SirenMod available! Click here to go to the downloads page.");
+		        versionWarningChatComponent.setChatStyle(clickableChatStyle);
+		        ((EntityPlayer) event.entity).addChatMessage(versionWarningChatComponent);
+		        SirenMod.haveWarnedVersionOutOfDate = true;
+		    }
+		}
 	}
-
-
-@SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-	public void onEvent(PlayerTickEvent event){
-  
-    if (!SirenMod.haveWarnedVersionOutOfDate && event.player.worldObj.isRemote && !SirenMod.versionChecker.isLatestVersion()){
-        ClickEvent versionCheckChatClickEvent = new ClickEvent(ClickEvent.Action.OPEN_URL, "http://sirenmod.wikia.com/wiki/Category:Downloads");
-        ChatStyle clickableChatStyle = new ChatStyle().setChatClickEvent(versionCheckChatClickEvent);
-        ChatComponentText versionWarningChatComponent = new ChatComponentText("There is a new version of SirenMod available! Click here to go to the downloads page.");
-        versionWarningChatComponent.setChatStyle(clickableChatStyle);
-        event.player.addChatMessage(versionWarningChatComponent);
-        SirenMod.haveWarnedVersionOutOfDate = true;
-    }
-  
-}
-
-
 }
