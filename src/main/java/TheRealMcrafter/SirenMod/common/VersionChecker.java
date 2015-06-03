@@ -13,6 +13,8 @@ public class VersionChecker implements Runnable
     private static boolean isLatestVersion = false;
     private static String latestVersion = "";
 
+    // Thanks to Jabelar
+    
     /* (non-Javadoc)
      * @see java.lang.Runnable#run()
      */
