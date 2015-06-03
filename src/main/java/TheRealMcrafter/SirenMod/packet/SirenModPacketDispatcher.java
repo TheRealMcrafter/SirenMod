@@ -10,7 +10,8 @@ import cpw.mods.fml.relauncher.Side;
 
 public class SirenModPacketDispatcher{
  private static byte packetId = 0;
- 
+
+//credit to coolAlias for his awesome tutorial on packets, my entire framework is based on his tutorial.
  /**
  * The SimpleNetworkWrapper instance is used both to register and send packets.
  * Since I will be adding wrapper methods, this field is private, but you should
