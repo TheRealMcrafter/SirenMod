@@ -6,6 +6,7 @@ import net.minecraftforge.oredict.OreDictionary;
 import TheRealMcrafter.SirenMod.blocks.AmericanSignalT121;
 import TheRealMcrafter.SirenMod.blocks.BurglarSiren;
 import TheRealMcrafter.SirenMod.blocks.FireAlarm;
+import TheRealMcrafter.SirenMod.blocks.FireExtinguisher;
 import TheRealMcrafter.SirenMod.blocks.GeneralSiren;
 import TheRealMcrafter.SirenMod.blocks.MotionDetector;
 import TheRealMcrafter.SirenMod.blocks.NuclearSiren;
@@ -14,6 +15,7 @@ import TheRealMcrafter.SirenMod.blocks.SiliconOre;
 import TheRealMcrafter.SirenMod.blocks.SirenController;
 import TheRealMcrafter.SirenMod.blocks.SirenPole;
 import TheRealMcrafter.SirenMod.blocks.Sprinkler;
+import TheRealMcrafter.SirenMod.items.FireExtinguisherItem;
 import TheRealMcrafter.SirenMod.items.GeneralSirenItem;
 import TheRealMcrafter.SirenMod.items.IntegratedCircuit;
 import TheRealMcrafter.SirenMod.items.Screwdriver;
@@ -23,6 +25,7 @@ import TheRealMcrafter.SirenMod.items.Wrench;
 import TheRealMcrafter.SirenMod.tiles.AmericanSignalT121TileEntity;
 import TheRealMcrafter.SirenMod.tiles.BurglarSirenTileEntity;
 import TheRealMcrafter.SirenMod.tiles.FireAlarmTileEntity;
+import TheRealMcrafter.SirenMod.tiles.FireExtinguisherTileEntity;
 import TheRealMcrafter.SirenMod.tiles.GeneralSirenTileEntity;
 import TheRealMcrafter.SirenMod.tiles.MotionDetectorTileEntity;
 import TheRealMcrafter.SirenMod.tiles.NuclearSirenTileEntity;
@@ -70,6 +73,7 @@ public class SirenModCommonProxy implements IGuiHandler {
 		GameRegistry.registerTileEntity(ProximitySensorTileEntity.class, "ProximitySensorTileEntity");
 		GameRegistry.registerTileEntity(MotionDetectorTileEntity.class, "MotionDetectorTileEntity");
 		GameRegistry.registerTileEntity(SprinklerTileEntity.class, "SprinklerTileEntity");
+		GameRegistry.registerTileEntity(FireExtinguisherTileEntity.class, "FireExtinguisherTileEntity");
 
 
 	}
@@ -119,6 +123,9 @@ public class SirenModCommonProxy implements IGuiHandler {
 		GameRegistry.registerBlock(SirenMod.Sprinkler, "Sprinkler");
 		LanguageRegistry.addName(SirenMod.Sprinkler, "Sprinkler");
 		
+		SirenMod.FireExtinguisher = new FireExtinguisher("FireExtinguisher").setHardness(0.3F);		
+		GameRegistry.registerBlock(SirenMod.FireExtinguisher, "Fire Extinguisher");
+		LanguageRegistry.addName(SirenMod.FireExtinguisher, "Fire Extinguisher");
 		
 
 
@@ -149,6 +156,10 @@ public class SirenModCommonProxy implements IGuiHandler {
 		SirenMod.Screwdriver = new Screwdriver("Screwdriver");
 		GameRegistry.registerItem(SirenMod.Screwdriver, "Screwdriver");
 		LanguageRegistry.addName(SirenMod.Screwdriver, "Screwdriver");
+		
+		SirenMod.FireExtinguisherItem = new FireExtinguisherItem("FireExtinguisherItem");
+		GameRegistry.registerItem(SirenMod.FireExtinguisherItem, "FireExtinguisherItem");
+		LanguageRegistry.addName(SirenMod.FireExtinguisherItem, "Fire Extinguisher");
 		
 	}
 	

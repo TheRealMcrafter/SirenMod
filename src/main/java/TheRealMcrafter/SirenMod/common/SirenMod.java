@@ -45,6 +45,7 @@ public class SirenMod {
 	
 //Config options
 	public static boolean generateSiliconOre;
+	public static boolean render3DItemsInHand;
 	
 //Blocks
 	public static Block SiliconOre;
@@ -58,6 +59,7 @@ public class SirenMod {
 	public static Block ProximitySensor;
 	public static Block MotionDetector;
 	public static Block Sprinkler;
+	public static Block FireExtinguisher;
 
 //Items
 	public static Item SiliconShard;
@@ -66,6 +68,7 @@ public class SirenMod {
 	public static Item GeneralSirenItem;
 	public static Item Wrench;
 	public static Item Screwdriver;
+	public static Item FireExtinguisherItem;
 
 	
 	

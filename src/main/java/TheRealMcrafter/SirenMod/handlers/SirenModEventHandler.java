@@ -25,6 +25,7 @@ import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import net.minecraftforge.event.world.BlockEvent.PlaceEvent;
 import TheRealMcrafter.SirenMod.ExtendedEntityProperties.ExtendedEntityProperties;
 import TheRealMcrafter.SirenMod.ExtendedEntityProperties.ExtendedVillager;
+import TheRealMcrafter.SirenMod.blocks.FireExtinguisher;
 import TheRealMcrafter.SirenMod.blocks.GeneralSiren;
 import TheRealMcrafter.SirenMod.blocks.MotionDetector;
 import TheRealMcrafter.SirenMod.blocks.Sprinkler;
@@ -55,6 +56,11 @@ public class SirenModEventHandler{
 			if (!event.getPlayer().capabilities.isCreativeMode){
 				GeneralSirenTileEntity tile = (GeneralSirenTileEntity) event.world.getTileEntity(event.x, event.y, event.z);
 				Entity item = new EntityItem(event.world, event.x, event.y, event.z, new ItemStack(SirenMod.GeneralSirenItem, 1, ((GeneralSiren) event.block).getColorCode(event.world, event.x, event.y, event.z, tile)));
+				event.world.spawnEntityInWorld(item);
+			}
+		} else if (event.block instanceof FireExtinguisher){
+			if (!event.getPlayer().capabilities.isCreativeMode){
+				Entity item = new EntityItem(event.world, event.x, event.y, event.z, new ItemStack(SirenMod.FireExtinguisherItem, 1));
 				event.world.spawnEntityInWorld(item);
 			}
 		}

@@ -6,6 +6,7 @@ import net.minecraft.world.World;
 import TheRealMcrafter.SirenMod.client.render.AmericanSignalT121Renderer;
 import TheRealMcrafter.SirenMod.client.render.BurglarSirenRenderer;
 import TheRealMcrafter.SirenMod.client.render.FireAlarmRenderer;
+import TheRealMcrafter.SirenMod.client.render.FireExtinguisherRenderer;
 import TheRealMcrafter.SirenMod.client.render.GeneralSirenRenderer;
 import TheRealMcrafter.SirenMod.client.render.MotionDetectorRenderer;
 import TheRealMcrafter.SirenMod.client.render.NuclearSirenRenderer;
@@ -19,6 +20,7 @@ import TheRealMcrafter.SirenMod.common.VersionChecker;
 import TheRealMcrafter.SirenMod.tiles.AmericanSignalT121TileEntity;
 import TheRealMcrafter.SirenMod.tiles.BurglarSirenTileEntity;
 import TheRealMcrafter.SirenMod.tiles.FireAlarmTileEntity;
+import TheRealMcrafter.SirenMod.tiles.FireExtinguisherTileEntity;
 import TheRealMcrafter.SirenMod.tiles.GeneralSirenTileEntity;
 import TheRealMcrafter.SirenMod.tiles.MotionDetectorTileEntity;
 import TheRealMcrafter.SirenMod.tiles.NuclearSirenTileEntity;
@@ -27,7 +29,6 @@ import TheRealMcrafter.SirenMod.tiles.SirenControllerTileEntity;
 import TheRealMcrafter.SirenMod.tiles.SirenPoleTileEntity;
 import TheRealMcrafter.SirenMod.tiles.SprinklerTileEntity;
 import cpw.mods.fml.client.registry.ClientRegistry;
-import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
@@ -44,6 +45,7 @@ public class SirenModClientProxy extends SirenModCommonProxy {
 		ClientRegistry.bindTileEntitySpecialRenderer(SirenControllerTileEntity.class, new SirenControllerRenderer());
 		ClientRegistry.bindTileEntitySpecialRenderer(MotionDetectorTileEntity.class, new MotionDetectorRenderer());
 		ClientRegistry.bindTileEntitySpecialRenderer(SprinklerTileEntity.class, new SprinklerRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(FireExtinguisherTileEntity.class, new FireExtinguisherRenderer());
 
 	}
 	
