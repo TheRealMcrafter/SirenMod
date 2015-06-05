@@ -3,6 +3,7 @@ package TheRealMcrafter.SirenMod.tiles;
 import java.util.Random;
 
 import TheRealMcrafter.SirenMod.packet.SirenModPacketDispatcher;
+import TheRealMcrafter.SirenMod.packet.SirenModPlaySoundMessage;
 import TheRealMcrafter.SirenMod.packet.SirenModSpawnParticleMessage;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -23,6 +24,25 @@ public class SprinklerTileEntity extends TileEntity {
 				
 		if (worldObj.isRemote && shouldSpawn){
 			this.spawnParticles();
+		}
+		
+		if (!worldObj.isRemote && shouldSpawn){
+			System.err.println("Playing");
+			//SirenModPacketDispatcher.sendToAllAround(new SirenModPlaySoundMessage(xCoord, yCoord, zCoord, "random.fuse"), this.worldObj.provider.dimensionId, xCoord, yCoord, zCoord, 120);
+			
+			Random rand = new Random();
+			if (rand.nextBoolean()){
+				if (rand.nextBoolean()){
+					if (rand.nextBoolean()){
+						if (rand.nextBoolean()){
+							if (rand.nextBoolean()){
+								this.worldObj.playSoundEffect(xCoord, yCoord, zCoord, "game.neutral.swim", 0.05F, 1.0F);								
+							}
+							this.worldObj.playSoundEffect(xCoord, yCoord, zCoord, "liquid.water", 0.4F, 1.0F);
+						}
+					}
+				}
+			}	
 		}
 		
 		if (!worldObj.isRemote){
@@ -83,7 +103,10 @@ public class SprinklerTileEntity extends TileEntity {
 				worldObj.spawnParticle("splash", this.xCoord + 0.6D, this.yCoord + 0.8, this.zCoord + 0.6D, rand.nextGaussian() / 10, -0.4D, rand.nextGaussian() / 10);
 			}
 		}
+		
+
 	}
+	
 	
 	public void setRunning(boolean isRunning) {
 		this.isRunning = isRunning;

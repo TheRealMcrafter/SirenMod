@@ -48,6 +48,7 @@ private String particleName;
 @Override
 		public IMessage handleClientMessage(EntityPlayer player, SirenModSpawnParticleMessage message, MessageContext ctx) {
 			SprinklerTileEntity tile = (SprinklerTileEntity) player.worldObj.getTileEntity(message.x, message.y, message.z);
+			SirenModPacketDispatcher.sendToServer(new SirenModUpdateValueToServerMessage(message.x, message.y, message.z, true));
 			tile.shouldSpawn = true;
 			return null;
 		}

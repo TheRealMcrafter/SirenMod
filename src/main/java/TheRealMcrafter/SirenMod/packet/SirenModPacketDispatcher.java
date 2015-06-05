@@ -28,6 +28,9 @@ public class SirenModPacketDispatcher{
  		SirenModPacketDispatcher.registerMessage(SirenModUpdateSirenColorMessage.Handler.class, SirenModUpdateSirenColorMessage.class, Side.SERVER);
  		SirenModPacketDispatcher.registerMessage(SirenModStopSoundsMessage.Handler.class, SirenModStopSoundsMessage.class, Side.CLIENT);
  		SirenModPacketDispatcher.registerMessage(SirenModSpawnParticleMessage.Handler.class, SirenModSpawnParticleMessage.class, Side.CLIENT);
+ 		SirenModPacketDispatcher.registerMessage(SirenModPlaySoundMessage.Handler.class, SirenModPlaySoundMessage.class, Side.CLIENT);
+ 		SirenModPacketDispatcher.registerMessage(SirenModUpdateValueToClientMessage.Handler.class, SirenModUpdateValueToClientMessage.class, Side.CLIENT);
+ 		SirenModPacketDispatcher.registerMessage(SirenModUpdateValueToServerMessage.Handler.class, SirenModUpdateValueToServerMessage.class, Side.SERVER);
 
  	}
 

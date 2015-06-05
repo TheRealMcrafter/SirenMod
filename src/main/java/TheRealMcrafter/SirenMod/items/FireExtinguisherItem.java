@@ -3,6 +3,8 @@ package TheRealMcrafter.SirenMod.items;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.audio.ISound;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -39,7 +41,21 @@ public class FireExtinguisherItem extends Item {
 		}
 		
 		if (!world.isRemote){
-			
+			for (int i = -3; i < 3; i++){
+				for (int j = -3; j < 3; j++){
+					for (int k = -3; k < 3; k++){
+						Block block = player.worldObj.getBlock((int) (player.posX + look.xCoord + i), (int) (player.posY + look.yCoord + j), (int) (player.posZ + look.zCoord + k));
+						
+						if (block == Blocks.fire){
+							if (rand.nextBoolean()){
+								if (rand.nextBoolean()){
+									player.worldObj.setBlockToAir((int) (player.posX + look.xCoord + i), (int) (player.posY + look.yCoord + j), (int) (player.posZ + look.zCoord + k));
+								}
+							}
+						}
+					}
+				}
+			}
 		}
 		return stack;		
 	}
