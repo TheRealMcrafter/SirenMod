@@ -39,7 +39,7 @@ public String textureName;
 	public boolean renderAsNormalBlock(){
 		return false;}
 	
-	public Item getItemDropped(int amount, Random rand, int fortune){
+	public Item getItemDropped(int meta, Random rand, int fortune){
 		return null;
 	}
 	

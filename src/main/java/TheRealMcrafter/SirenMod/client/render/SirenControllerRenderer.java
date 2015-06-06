@@ -43,7 +43,12 @@ public class SirenControllerRenderer extends TileEntitySpecialRenderer {
           else if (meta==3) meta=2;
        GL11.glRotatef(90 * meta, 0F, 1F, 0F);
        
+       
+       tileentity.getWorldObj().scheduleBlockUpdate((int)tileentity.xCoord, (int)tileentity.yCoord, (int)tileentity.zCoord, tileentity.getBlockType(), 20);       
+
+       
        SirenControllerTileEntity tile = (SirenControllerTileEntity) tileentity;
+       
        
        if (tile.getRenderValue() == 0){
     	   if (tile.state == ""){

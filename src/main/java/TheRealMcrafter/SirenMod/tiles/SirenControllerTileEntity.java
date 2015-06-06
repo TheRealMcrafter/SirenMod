@@ -24,10 +24,17 @@ public class SirenControllerTileEntity extends TileEntity {
 	public ArrayList<Integer> sirensY = new ArrayList<Integer>();
 	public ArrayList<Integer> sirensZ = new ArrayList<Integer>();
 	public boolean isUpdated;
+	public boolean textureHelper = false;
 	
 	
 	public void updateEntity(){
 		if (!worldObj.isRemote){
+			
+			if (this.textureHelper){
+				this.updateClientTileEntity();
+				this.textureHelper = false;
+			}
+			
 			if (!this.isUpdated){
 				this.updateClientTileEntity();
 				this.isUpdated = true;
@@ -77,6 +84,7 @@ public class SirenControllerTileEntity extends TileEntity {
 	}
 	
 	public byte getRenderValue(){
+		this.updateClientTileEntity();
 		return this.renderValue;
 	}
 	
@@ -193,6 +201,10 @@ public class SirenControllerTileEntity extends TileEntity {
 			sirensY.add(siren.getInteger("y" + i));
 			sirensZ.add(siren.getInteger("z" + i));
 		}
+		
+		this.textureHelper = true;
+		
+		
 	}
 
 @Override
