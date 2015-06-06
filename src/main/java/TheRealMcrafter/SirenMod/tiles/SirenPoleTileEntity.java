@@ -25,13 +25,13 @@ public class SirenPoleTileEntity extends TileEntity {
 							((SirenPoleTileEntity) tile).updateClientRender();
 						} else if (tile instanceof GeneralSirenTileEntity){
 							((GeneralSirenTileEntity) tile).setShouldStart(true);
-							((GeneralSirenTileEntity) tile).updateClientRender();
+							((GeneralSirenTileEntity) tile).updateClientTileEntity();
 						} else if (tile instanceof NuclearSirenTileEntity){
 							((NuclearSirenTileEntity) tile).setShouldStart(true);
-							((NuclearSirenTileEntity) tile).updateClientRender();
+							((NuclearSirenTileEntity) tile).updateClientTileEntity();
 						} else if (tile instanceof AmericanSignalT121TileEntity){
 							((AmericanSignalT121TileEntity) tile).setShouldStart(true);
-							((AmericanSignalT121TileEntity) tile).updateClientRender();
+							((AmericanSignalT121TileEntity) tile).updateClientTileEntity();
 						}
 					}
 			} else {
@@ -41,14 +41,20 @@ public class SirenPoleTileEntity extends TileEntity {
 						((SirenPoleTileEntity) tile).setIsPowered(false);
 						((SirenPoleTileEntity) tile).updateClientRender();
 					} else if (tile instanceof GeneralSirenTileEntity){
-						((GeneralSirenTileEntity) tile).setShouldStop(true);
-						((GeneralSirenTileEntity) tile).updateClientRender();
+						if (!((GeneralSirenTileEntity) tile).getIsLinked()){
+							((GeneralSirenTileEntity) tile).setShouldStop(true);
+							((GeneralSirenTileEntity) tile).updateClientTileEntity();
+					}
 					} else if (tile instanceof NuclearSirenTileEntity){
-						((NuclearSirenTileEntity) tile).setShouldStop(true);
-						((NuclearSirenTileEntity) tile).updateClientRender();
+						if (!((NuclearSirenTileEntity) tile).getIsLinked()){
+							((NuclearSirenTileEntity) tile).setShouldStop(true);
+							((NuclearSirenTileEntity) tile).updateClientTileEntity();
+						}
 					} else if (tile instanceof AmericanSignalT121TileEntity){
-						((AmericanSignalT121TileEntity) tile).setShouldStop(true);
-						((AmericanSignalT121TileEntity) tile).updateClientRender();
+						if (!((AmericanSignalT121TileEntity) tile).getIsLinked()){
+							((AmericanSignalT121TileEntity) tile).setShouldStop(true);
+							((AmericanSignalT121TileEntity) tile).updateClientTileEntity();
+						}
 					}
 
 				}

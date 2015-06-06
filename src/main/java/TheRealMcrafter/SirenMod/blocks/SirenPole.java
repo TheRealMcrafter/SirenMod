@@ -50,14 +50,20 @@ import TheRealMcrafter.SirenMod.tiles.SirenPoleTileEntity;
 				if (tile1 instanceof SirenPoleTileEntity){
 					((SirenPoleTileEntity) tile1).setIsPowered(false);
 				} else if (tile1 instanceof GeneralSirenTileEntity){
-					((GeneralSirenTileEntity) tile1).setShouldStop(true);
-					((GeneralSirenTileEntity) tile1).updateClientRender();
+					if (!((GeneralSirenTileEntity) tile1).getIsLinked()){
+						((GeneralSirenTileEntity) tile1).setShouldStop(true);
+						((GeneralSirenTileEntity) tile1).updateClientTileEntity();
+					}
 				} else if (tile1 instanceof NuclearSirenTileEntity){
-					((NuclearSirenTileEntity) tile1).setShouldStop(true);
-					((NuclearSirenTileEntity) tile1).updateClientRender();
+					if (!((NuclearSirenTileEntity) tile1).getIsLinked()){
+						((NuclearSirenTileEntity) tile1).setShouldStop(true);
+						((NuclearSirenTileEntity) tile1).updateClientTileEntity();
+					}
 				} else if (tile1 instanceof AmericanSignalT121TileEntity){
-					((AmericanSignalT121TileEntity) tile1).setShouldStop(true);
-					((AmericanSignalT121TileEntity) tile1).updateClientRender();
+					if (!((AmericanSignalT121TileEntity) tile1).getIsLinked()){
+						((AmericanSignalT121TileEntity) tile1).setShouldStop(true);
+						((AmericanSignalT121TileEntity) tile1).updateClientTileEntity();
+					}
 				}
 			}
 			}

@@ -13,7 +13,7 @@ import TheRealMcrafter.SirenMod.ExtendedEntityProperties.ExtendedVillager;
 import TheRealMcrafter.SirenMod.packet.SirenModPacketDispatcher;
 import TheRealMcrafter.SirenMod.packet.SirenModPlayLoopedSoundMessage;
 
-	public class NuclearSirenTileEntity extends SirenTileEntity{
+	public class NuclearSirenTileEntity extends TileEntity implements ISirenTileEntity{
 		
 		private float rotation = 0;
 		public double timer;
@@ -24,6 +24,7 @@ import TheRealMcrafter.SirenMod.packet.SirenModPlayLoopedSoundMessage;
 	    private float increment;
 	    private boolean toggle;
 		private boolean wasPlaying;
+		private boolean isLinked;
 		
 					
 		public void updateEntity(){			
@@ -34,12 +35,12 @@ import TheRealMcrafter.SirenMod.packet.SirenModPlayLoopedSoundMessage;
 					timer = 0;
 					isOn = false;
 					this.rotation = 0;
-					this.updateClientRender();
+					this.updateClientTileEntity();
 				} else {
 					timer++;
 					increment = 0.089F;
 					this.rotation = this.rotation + increment;
-					this.updateClientRender();
+					this.updateClientTileEntity();
 				}
 			}
 			
@@ -59,29 +60,29 @@ import TheRealMcrafter.SirenMod.packet.SirenModPlayLoopedSoundMessage;
 				shouldStart = false; 
 		        shouldStop = false; 
 		        isPlaying = true; 
-		        this.updateClientRender();
+		        this.updateClientTileEntity();
 				SirenModPacketDispatcher.sendToAllAround(new SirenModPlayLoopedSoundMessage(xCoord, yCoord, zCoord, "nuclearSiren"), this.worldObj.provider.dimensionId, xCoord, yCoord, zCoord, 50000000);
 			}
 				
 			if (isPlaying){
 				this.wasPlaying = true;
 				this.rotation = this.rotation + 0.089F;
-				this.updateClientRender();
+				this.updateClientTileEntity();
 			} else {
 				if (wasPlaying){
 					if (timer > 40 && rotation % 6.3 <= 3){
 						timer = 0;
 						wasPlaying = false;
 						this.rotation = 0;
-						this.updateClientRender();
+						this.updateClientTileEntity();
 					} else if (timer < 40) {
 						timer ++;
 						this.rotation = this.rotation + 0.089F;
-						this.updateClientRender();
+						this.updateClientTileEntity();
 					} else {
 						timer ++;
 						this.rotation = this.rotation + 0.05F;
-						this.updateClientRender();
+						this.updateClientTileEntity();
 					}
 				}
 			}
@@ -97,7 +98,7 @@ import TheRealMcrafter.SirenMod.packet.SirenModPlayLoopedSoundMessage;
 			this.isOn = true;
 		}
 		
-		public void updateClientRender(){
+		public void updateClientTileEntity(){
 			worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
 		}
 		
@@ -139,6 +140,7 @@ import TheRealMcrafter.SirenMod.packet.SirenModPlayLoopedSoundMessage;
 	    	nbt.setBoolean("isPlaying", this.isPlaying);
 	    	nbt.setFloat("increment", this.increment);
 	    	nbt.setBoolean("wasPlaying", this.wasPlaying);
+	    	nbt.setBoolean("isLinked", this.isLinked);
 		}
 
 	@Override
@@ -151,6 +153,7 @@ import TheRealMcrafter.SirenMod.packet.SirenModPlayLoopedSoundMessage;
 			this.isPlaying = nbt.getBoolean("isPlaying");
 			this.increment = nbt.getFloat("increment");
 			this.wasPlaying = nbt.getBoolean("wasPlaying");
+			this.isLinked = nbt.getBoolean("isLinked");
 		}
 
 	@Override
@@ -165,5 +168,18 @@ import TheRealMcrafter.SirenMod.packet.SirenModPlayLoopedSoundMessage;
 			NBTTagCompound tag = packet.func_148857_g();
 	        readFromNBT(packet.func_148857_g());
 		}
+	
+	public boolean getIsLinked(){
+		return this.isLinked;
+	}
+
+	public void setIsLinked(boolean isLinked){
+		this.isLinked = isLinked;
+		this.updateClientTileEntity();
+	}
+
+	public void playSound(){
+		worldObj.playSoundEffect(xCoord, yCoord, zCoord, "sirenmod:sirenT121", 8.0F, 1.0F);
+	}
 
 	}

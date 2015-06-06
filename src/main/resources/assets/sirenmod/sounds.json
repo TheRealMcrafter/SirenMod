@@ -1,12 +1,10 @@
 {
   "generalSirenFull": {"category": "block","sounds": [{"name": "sirens/generalSirenFull","stream": false}]},
-  "generalSiren01": {"category": "block","sounds": [{"name": "sirens/generalSiren01","stream": false}]},
-  "generalSiren02": {"category": "block","sounds": [{"name": "sirens/generalSiren02","stream": false}]},
-  "generalSiren03": {"category": "block","sounds": [{"name": "sirens/generalSiren03","stream": false}]},
   "nuclearSiren": {"category": "block","sounds": [{"name": "sirens/nuclearSiren","stream": false}]},
   "burglarAlarm": {"category": "block","sounds": [{"name": "sirens/burglarAlarm","stream": false}]},
   "fireAlarm": {"category": "block","sounds": [{"name": "sirens/fireAlarm","stream": false}]},
-  "sirenT121": {"category": "block","sounds": [{"name": "sirens/sirenT121","stream": false}]}
+  "sirenT121": {"category": "block","sounds": [{"name": "sirens/sirenT121","stream": false}]},
+  "fireExtinguisher": {"category": "block","sounds": [{"name": "fireExtinguisher","stream": false}]}
 
   }
   

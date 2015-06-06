@@ -18,7 +18,7 @@ import TheRealMcrafter.SirenMod.tiles.FireAlarmTileEntity;
 import TheRealMcrafter.SirenMod.tiles.GeneralSirenTileEntity;
 import TheRealMcrafter.SirenMod.tiles.NuclearSirenTileEntity;
 import TheRealMcrafter.SirenMod.tiles.SirenControllerTileEntity;
-import TheRealMcrafter.SirenMod.tiles.SirenTileEntity;
+import TheRealMcrafter.SirenMod.tiles.ISirenTileEntity;
 
 public class Screwdriver extends Item {		
 	

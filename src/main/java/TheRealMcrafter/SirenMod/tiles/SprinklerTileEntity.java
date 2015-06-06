@@ -27,7 +27,6 @@ public class SprinklerTileEntity extends TileEntity {
 		}
 		
 		if (!worldObj.isRemote && shouldSpawn){
-			System.err.println("Playing");
 			//SirenModPacketDispatcher.sendToAllAround(new SirenModPlaySoundMessage(xCoord, yCoord, zCoord, "random.fuse"), this.worldObj.provider.dimensionId, xCoord, yCoord, zCoord, 120);
 			
 			Random rand = new Random();

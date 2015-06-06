@@ -14,7 +14,7 @@ import TheRealMcrafter.SirenMod.packet.SirenModPacketDispatcher;
 import TheRealMcrafter.SirenMod.packet.SirenModPlayLoopedSoundMessage;
 
 
-public class GeneralSirenTileEntity extends SirenTileEntity {
+public class GeneralSirenTileEntity extends TileEntity implements ISirenTileEntity {
 	private String color = "lightGray";
 	private float rotation;
 	private double timer;
@@ -24,6 +24,7 @@ public class GeneralSirenTileEntity extends SirenTileEntity {
     private boolean isOn;
     private float increment;
     private boolean wasPlaying;
+	private boolean isLinked;
     
 					
 	
@@ -49,7 +50,7 @@ public class GeneralSirenTileEntity extends SirenTileEntity {
 				timer = 0;
 				isOn = false;
 				this.rotation = 0;
-				this.updateClientRender();
+				this.updateClientTileEntity();
 			} else {
 				timer++;
 				if (timer > 160){
@@ -67,7 +68,7 @@ public class GeneralSirenTileEntity extends SirenTileEntity {
 				}
 				
 				this.rotation = this.rotation + increment;
-				this.updateClientRender();
+				this.updateClientTileEntity();
 			}
 		}
 		
@@ -88,7 +89,7 @@ public class GeneralSirenTileEntity extends SirenTileEntity {
             shouldStart = false; 
             shouldStop = false; 
             isPlaying = true; 
-            this.updateClientRender();
+            this.updateClientTileEntity();
 			SirenModPacketDispatcher.sendToAllAround(new SirenModPlayLoopedSoundMessage(xCoord, yCoord, zCoord, "generalSirenFull"), this.worldObj.provider.dimensionId, xCoord, yCoord, zCoord, 50000000);
 		}
 		
@@ -99,26 +100,26 @@ public class GeneralSirenTileEntity extends SirenTileEntity {
 			
 			this.wasPlaying = true;
 			this.rotation = this.rotation + 0.5F;
-			this.updateClientRender();
+			this.updateClientTileEntity();
 		} else {
 			if (wasPlaying){
 				if (timer > 58 && rotation % 6.3 <= 1){
 					timer = 0;
 					wasPlaying = false;
 					this.rotation = 0;
-					this.updateClientRender();
+					this.updateClientTileEntity();
 				} else if (timer > 30) {
 					timer ++;
 					this.rotation = this.rotation + 0.1F;
-					this.updateClientRender();
+					this.updateClientTileEntity();
 				} else if (timer > 20) {
 					timer ++;
 					this.rotation = this.rotation + 0.2F;
-					this.updateClientRender();
+					this.updateClientTileEntity();
 				} else {
 					timer ++;
 					this.rotation = this.rotation + 0.4F;
-					this.updateClientRender();
+					this.updateClientTileEntity();
 				}
 			}
 		}
@@ -157,7 +158,7 @@ public class GeneralSirenTileEntity extends SirenTileEntity {
     public boolean isPlaying(){
         return isPlaying;}
     
-    public void updateClientRender(){
+    public void updateClientTileEntity(){
 		worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
 	}
 	
@@ -182,6 +183,7 @@ public class GeneralSirenTileEntity extends SirenTileEntity {
     	nbt.setBoolean("shouldStart", this.shouldStart);
     	nbt.setBoolean("isPlaying", this.isPlaying);
     	nbt.setBoolean("wasPlaying", this.wasPlaying);
+    	nbt.setBoolean("isLinked", this.isLinked);
 	}
 
 @Override
@@ -193,6 +195,7 @@ public class GeneralSirenTileEntity extends SirenTileEntity {
 		this.shouldStart = nbt.getBoolean("shouldStart");
 		this.isPlaying = nbt.getBoolean("isPlaying");
 		this.wasPlaying = nbt.getBoolean("wasPlaying");
+		this.isLinked = nbt.getBoolean("isLinked");
 	}
 
 @Override
@@ -208,4 +211,17 @@ public class GeneralSirenTileEntity extends SirenTileEntity {
         readFromNBT(packet.func_148857_g());
 	}
 
+
+	public boolean getIsLinked(){
+		return this.isLinked;
+	}
+
+	public void setIsLinked(boolean isLinked){
+		this.isLinked = isLinked;
+		this.updateClientTileEntity();
+	}
+
+	public void playSound(){
+		worldObj.playSoundEffect(xCoord, yCoord, zCoord, "sirenmod:sirenT121", 8.0F, 1.0F);
+	}
 }

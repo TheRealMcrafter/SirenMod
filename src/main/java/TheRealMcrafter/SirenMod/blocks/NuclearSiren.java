@@ -82,7 +82,7 @@ import net.minecraft.world.World;
 					}
 				}
 	        
-				tile.updateClientRender();
+				tile.updateClientTileEntity();
 			}
 		
 		}
@@ -111,7 +111,7 @@ import net.minecraft.world.World;
 					}
 				}
 	        
-				tile.updateClientRender();
+				tile.updateClientTileEntity();
 			}
 		}
 

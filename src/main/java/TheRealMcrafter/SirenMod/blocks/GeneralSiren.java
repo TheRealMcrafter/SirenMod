@@ -126,7 +126,7 @@ public String textureName;
 					}
 				}
 	        
-				tile.updateClientRender();
+				tile.updateClientTileEntity();
 			}
 		
 		}
@@ -156,7 +156,7 @@ public String textureName;
 					}
 				}
 	        
-				tile.updateClientRender();
+				tile.updateClientTileEntity();
 			}
 		
 		}
@@ -235,7 +235,7 @@ public String textureName;
 								player.getHeldItem().stackSize--;}
 							tile.setColor("white");
 						}
-						tile.updateClientRender();
+						tile.updateClientTileEntity();
 					}
 				}
 				}

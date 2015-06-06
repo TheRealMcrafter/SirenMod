@@ -36,7 +36,9 @@ public class SirenControllerTileEntity extends TileEntity {
 			for (int i = 0; i < sirensX.size(); i++){
 				TileEntity tile = worldObj.getTileEntity(sirensX.get(i), sirensY.get(i), sirensZ.get(i));
 				
-				if (tile != null && tile instanceof SirenTileEntity){
+				if (tile != null && tile instanceof ISirenTileEntity){
+					((ISirenTileEntity) tile).setIsLinked(true);
+					
 				} else {
 					sirensX.remove(i);
 					sirensY.remove(i);
@@ -114,7 +116,7 @@ public class SirenControllerTileEntity extends TileEntity {
 					tile.startSingleRotation();
 				} else if (tilee instanceof AmericanSignalT121TileEntity){
 					AmericanSignalT121TileEntity tile = (AmericanSignalT121TileEntity) worldObj.getTileEntity(sirensX.get(i), sirensY.get(i), sirensZ.get(i));
-					tile.startSingleRotation();
+					tile.playSound();
 				}
 			}
 			

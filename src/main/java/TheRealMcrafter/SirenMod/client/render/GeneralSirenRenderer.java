@@ -90,7 +90,7 @@ public class GeneralSirenRenderer extends TileEntitySpecialRenderer {
        } else {
        }
        
-       ((GeneralSirenTileEntity)tileentity).updateClientRender();
+       ((GeneralSirenTileEntity)tileentity).updateClientTileEntity();
        model.RotorLeft.rotateAngleX = ((GeneralSirenTileEntity)tileentity).getRotation();
        model.RotorRight.rotateAngleX = ((GeneralSirenTileEntity)tileentity).getRotation();
        model.Panel1.rotateAngleX = ((GeneralSirenTileEntity)tileentity).getRotation();

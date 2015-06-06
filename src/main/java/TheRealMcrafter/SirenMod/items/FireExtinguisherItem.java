@@ -36,6 +36,7 @@ public class FireExtinguisherItem extends Item {
 		Vec3 look = player.getLookVec();
 		Random rand = new Random();
 		
+		world.playSoundEffect(player.posX, player.posY, player.posZ, "sirenmod:fireExtinguisher", 1.0F, 1.0F);
 		for (int i = 0; i < 17; i ++){
 			player.worldObj.spawnParticle("explode", player.posX, player.posY, player.posZ, look.xCoord + rand.nextGaussian() / 12, look.yCoord + rand.nextGaussian() / 12, look.zCoord + rand.nextGaussian() / 12);
 		}
@@ -48,9 +49,7 @@ public class FireExtinguisherItem extends Item {
 						
 						if (block == Blocks.fire){
 							if (rand.nextBoolean()){
-								if (rand.nextBoolean()){
-									player.worldObj.setBlockToAir((int) (player.posX + look.xCoord + i), (int) (player.posY + look.yCoord + j), (int) (player.posZ + look.zCoord + k));
-								}
+								player.worldObj.setBlockToAir((int) (player.posX + look.xCoord + i), (int) (player.posY + look.yCoord + j), (int) (player.posZ + look.zCoord + k));
 							}
 						}
 					}

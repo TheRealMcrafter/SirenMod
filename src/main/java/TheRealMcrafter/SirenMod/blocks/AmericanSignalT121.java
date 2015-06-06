@@ -68,7 +68,7 @@ public class AmericanSignalT121 extends BlockContainer {
 				}
 			}
         
-			tile.updateClientRender();
+			tile.updateClientTileEntity();
 		}
 	
 	}
@@ -97,7 +97,7 @@ public class AmericanSignalT121 extends BlockContainer {
 				}
 			}
         
-			tile.updateClientRender();
+			tile.updateClientTileEntity();
 		}
 	}
 

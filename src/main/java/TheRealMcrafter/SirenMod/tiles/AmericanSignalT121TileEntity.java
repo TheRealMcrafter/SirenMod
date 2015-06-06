@@ -7,16 +7,18 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import TheRealMcrafter.SirenMod.ExtendedEntityProperties.ExtendedVillager;
 import TheRealMcrafter.SirenMod.packet.SirenModPacketDispatcher;
 import TheRealMcrafter.SirenMod.packet.SirenModPlayLoopedSoundMessage;
 
-public class AmericanSignalT121TileEntity extends SirenTileEntity{
+public class AmericanSignalT121TileEntity extends TileEntity implements ISirenTileEntity{
 
 	private boolean isPlaying = false;
 	private boolean shouldStart = false; 
     private boolean shouldStop = false;
+    private boolean isLinked;
 	
 				
 	public void updateEntity(){			
@@ -43,17 +45,27 @@ public class AmericanSignalT121TileEntity extends SirenTileEntity{
 				shouldStart = false; 
 				shouldStop = false; 
 				isPlaying = true; 
-				this.updateClientRender();
+				this.updateClientTileEntity();
 				SirenModPacketDispatcher.sendToAllAround(new SirenModPlayLoopedSoundMessage(xCoord, yCoord, zCoord, "sirenT121"), this.worldObj.provider.dimensionId, xCoord, yCoord, zCoord, 50000000);
 			}
 		}
+	}
+	
+
+	public boolean getIsLinked(){
+		return this.isLinked;
+	}
+	
+	public void setIsLinked(boolean isLinked){
+		this.isLinked = isLinked;
+		this.updateClientTileEntity();
 	}
 	
 	public void playSound(){
 		worldObj.playSoundEffect(xCoord, yCoord, zCoord, "sirenmod:sirenT121", 8.0F, 1.0F);
 	}
 	
-	public void updateClientRender(){
+	public void updateClientTileEntity(){
 		worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
 	}
 	
@@ -67,11 +79,11 @@ public class AmericanSignalT121TileEntity extends SirenTileEntity{
     		this.shouldStop = true;
     	}
         this.shouldStart = shouldStart;
-        this.updateClientRender();
+        this.updateClientTileEntity();
     }
 
     public void setShouldStop(boolean shouldStop){
-    	if (shouldStop){
+    	if (shouldStop){    		
     		if (isPlaying){
     			isPlaying = false; 
     			this.shouldStop = true;
@@ -81,7 +93,7 @@ public class AmericanSignalT121TileEntity extends SirenTileEntity{
     		this.shouldStop = shouldStop;
     	}
     	
-    	this.updateClientRender();
+    	this.updateClientTileEntity();
     }
 
     public boolean isPlaying(){
@@ -95,6 +107,7 @@ public class AmericanSignalT121TileEntity extends SirenTileEntity{
     	nbt.setBoolean("shouldStop", this.shouldStop);
     	nbt.setBoolean("shouldStart", this.shouldStart);
     	nbt.setBoolean("isPlaying", this.isPlaying);
+    	nbt.setBoolean("isLinked", this.isLinked);
 	}
 
 @Override
@@ -103,6 +116,7 @@ public class AmericanSignalT121TileEntity extends SirenTileEntity{
 		this.shouldStop = nbt.getBoolean("shouldStop");
 		this.shouldStart = nbt.getBoolean("shouldStart");
 		this.isPlaying = nbt.getBoolean("isPlaying");
+		this.isLinked = nbt.getBoolean("isLinked");
 	}
 
 @Override
@@ -117,9 +131,4 @@ public class AmericanSignalT121TileEntity extends SirenTileEntity{
 		NBTTagCompound tag = packet.func_148857_g();
         readFromNBT(packet.func_148857_g());
 	}
-
-	public void startSingleRotation() {
-		worldObj.playSoundEffect(this.xCoord, this.yCoord, this.zCoord, "sirenmod:sirenT121", 1.0F, 1.0F);
-	}
-
 }

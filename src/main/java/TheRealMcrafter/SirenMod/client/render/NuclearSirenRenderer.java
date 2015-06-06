@@ -44,7 +44,7 @@ public class NuclearSirenRenderer extends TileEntitySpecialRenderer {
        ResourceLocation textures = (new ResourceLocation("sirenmod:textures/blocks/NuclearSirenModel.png"));
        this.bindTexture(textures);
        
-       ((NuclearSirenTileEntity)tileentity).updateClientRender();
+       ((NuclearSirenTileEntity)tileentity).updateClientTileEntity();
        
        model.MainHub.rotateAngleY = ((NuclearSirenTileEntity)tileentity).getRotation();
        model.Hub.rotateAngleY = ((NuclearSirenTileEntity)tileentity).getRotation();
