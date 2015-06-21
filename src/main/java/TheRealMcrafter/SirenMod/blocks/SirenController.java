@@ -1,6 +1,7 @@
 package TheRealMcrafter.SirenMod.blocks;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockContainer;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -16,7 +17,7 @@ import TheRealMcrafter.SirenMod.common.SirenMod;
 import TheRealMcrafter.SirenMod.tiles.SirenControllerTileEntity;
 import TheRealMcrafter.SirenMod.tiles.SirenPoleTileEntity;
 
-public class SirenController extends Block implements ITileEntityProvider {
+public class SirenController extends BlockContainer {
 	
 	public String textureName;
 	

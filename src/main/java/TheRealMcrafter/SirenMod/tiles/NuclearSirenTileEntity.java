@@ -141,6 +141,7 @@ import TheRealMcrafter.SirenMod.packet.SirenModPlayLoopedSoundMessage;
 	    	nbt.setFloat("increment", this.increment);
 	    	nbt.setBoolean("wasPlaying", this.wasPlaying);
 	    	nbt.setBoolean("isLinked", this.isLinked);
+	    	nbt.setDouble("timer", this.timer);
 		}
 
 	@Override
@@ -154,6 +155,7 @@ import TheRealMcrafter.SirenMod.packet.SirenModPlayLoopedSoundMessage;
 			this.increment = nbt.getFloat("increment");
 			this.wasPlaying = nbt.getBoolean("wasPlaying");
 			this.isLinked = nbt.getBoolean("isLinked");
+			this.timer = nbt.getDouble("timer");
 		}
 
 	@Override

@@ -11,7 +11,6 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import TheRealMcrafter.SirenMod.ExtendedEntityProperties.ExtendedVillager;
-import TheRealMcrafter.SirenMod.client.audio.SirenLooperFireAlarm;
 import TheRealMcrafter.SirenMod.packet.SirenModPacketDispatcher;
 import TheRealMcrafter.SirenMod.packet.SirenModPlayLoopedSoundMessage;
 

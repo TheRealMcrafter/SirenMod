@@ -14,7 +14,7 @@ import TheRealMcrafter.SirenMod.packet.SirenModPacketDispatcher;
 import TheRealMcrafter.SirenMod.packet.SirenModPlayLoopedSoundMessage;
 
 
-public class BurglarSirenTileEntity extends TileEntity {
+public class SmokeDetectorTileEntity extends TileEntity implements ISirenTileEntity {
 	
 	private boolean isPlaying = false;
 	private boolean shouldStart = false; 
@@ -39,45 +39,31 @@ public class BurglarSirenTileEntity extends TileEntity {
             shouldStart = false; 
             shouldStop = false; 
             isPlaying = true; 
-			SirenModPacketDispatcher.sendToAllAround(new SirenModPlayLoopedSoundMessage(xCoord, yCoord, zCoord, "burglarAlarm"), this.worldObj.provider.dimensionId, xCoord, yCoord, zCoord, 50000000);
+			SirenModPacketDispatcher.sendToAllAround(new SirenModPlayLoopedSoundMessage(xCoord, yCoord, zCoord, "smokeDetector"), this.worldObj.provider.dimensionId, xCoord, yCoord, zCoord, 50000000);
         }
-    	
+    	this.updateClientTileEntity();
     }
     
-    public void updateClientRender(){
-  		worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
-  	}
+    public void updateClientTileEntity(){
+    	worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+    }
     
 	public boolean isShouldStop(){
         return shouldStop;}
 
-	public void setShouldStart(boolean shouldStart){
-    	if (shouldStart == true){
-    		this.shouldStop = false;
-    	} else {
-    		this.shouldStop = true;
-    	}
-        this.shouldStart = shouldStart;
-    }
+    public void setShouldStart(boolean shouldStart){ 
+        this.shouldStart = shouldStart;}
 
     public void setShouldStop(boolean shouldStop){
-    	if (shouldStop){
-    		if (isPlaying){
-    			isPlaying = false; 
-    			this.shouldStop = true;
-    		}
-    	} else {
-    		this.shouldStop = shouldStop;
-    	}
-    }
+        if (isPlaying){
+        	isPlaying = false; 
+            this.shouldStop = shouldStop;}}
+
     public boolean isPlaying(){
         return isPlaying;}
-
-	public void playSound() {
-		worldObj.playSoundEffect(xCoord, yCoord, zCoord, "sirenmod:burglarAlarm", 5.0F, 1.0F);
-	}
-	
-	@Override
+    
+    
+    @Override
 	public void writeToNBT(NBTTagCompound nbt){
     	super.writeToNBT(nbt);  
     	nbt.setBoolean("shouldStop", this.shouldStop);
@@ -105,6 +91,21 @@ public class BurglarSirenTileEntity extends TileEntity {
 		NBTTagCompound tag = packet.func_148857_g();
         readFromNBT(packet.func_148857_g());
 	}
-	
 
+@Override
+	public boolean getIsLinked() {
+		return false;
+	}
+
+@Override
+	public void setIsLinked(boolean isLinked) {
+	
+	}
+
+@Override
+	public void playSound() {
+		worldObj.playSoundEffect(xCoord, yCoord, zCoord, "sirenmod:smokeDetector", 2.0F, 1.0F);
+	}
+	
+	
 }

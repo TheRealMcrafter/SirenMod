@@ -4,7 +4,7 @@
   "burglarAlarm": {"category": "block","sounds": [{"name": "sirens/burglarAlarm","stream": false}]},
   "fireAlarm": {"category": "block","sounds": [{"name": "sirens/fireAlarm","stream": false}]},
   "sirenT121": {"category": "block","sounds": [{"name": "sirens/sirenT121","stream": false}]},
-  "fireExtinguisher": {"category": "block","sounds": [{"name": "fireExtinguisher","stream": false}]}
-
+  "fireExtinguisher": {"category": "block","sounds": [{"name": "fireExtinguisher","stream": false}]},
+  "smokeDetector": {"category": "block","sounds": [{"name": "smokeDetector","stream": false}]}
   }
   

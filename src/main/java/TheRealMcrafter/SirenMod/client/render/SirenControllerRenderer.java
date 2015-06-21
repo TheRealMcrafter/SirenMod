@@ -51,38 +51,38 @@ public class SirenControllerRenderer extends TileEntitySpecialRenderer {
        
        
        if (tile.getRenderValue() == 0){
-    	   if (tile.state == ""){
+    	   if (tile.state.equals("")){
     		   ResourceLocation textures = (new ResourceLocation("sirenmod:textures/blocks/SirenController/SirenControllerNoSiren.png"));
         	   this.bindTexture(textures);
-    	   } else if (tile.state == "red"){
+    	   } else if (tile.state.equals("red")){
     		   ResourceLocation textures = (new ResourceLocation("sirenmod:textures/blocks/SirenController/SirenControllerDisarmed.png"));
         	   this.bindTexture(textures);
-    	   } else if (tile.state == "green"){
+    	   } else if (tile.state.equals("green")){
     		   ResourceLocation textures = (new ResourceLocation("sirenmod:textures/blocks/SirenController/SirenControllerArmed.png"));
         	   this.bindTexture(textures);
-    	   } else if (tile.state == "blue"){
+    	   } else if (tile.state.equals("blue")){
     		   ResourceLocation textures = (new ResourceLocation("sirenmod:textures/blocks/SirenController/SirenControllerTesting.png"));
         	   this.bindTexture(textures);
-    	   } else if (tile.state == "waiting"){
+    	   } else if (tile.state.equals("waiting")){
     		   ResourceLocation textures = (new ResourceLocation("sirenmod:textures/blocks/SirenController/SirenControllerWaiting.png"));
     		   this.bindTexture(textures);
     	   }
     	   
     	   this.model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
        } else if (tile.getRenderValue() == 1) {
-    	   if (tile.state == ""){
+    	   if (tile.state.equals("")){
     		   ResourceLocation textures = (new ResourceLocation("sirenmod:textures/blocks/MountedSirenController/MountedSirenControllerNoSiren.png"));
         	   this.bindTexture(textures);
-    	   } else if (tile.state == "red"){
+    	   } else if (tile.state.equals("red")){
     		   ResourceLocation textures = (new ResourceLocation("sirenmod:textures/blocks/MountedSirenController/MountedSirenControllerDisarmed.png"));
         	   this.bindTexture(textures);
-    	   } else if (tile.state == "green"){
+    	   } else if (tile.state.equals("green")){
     		   ResourceLocation textures = (new ResourceLocation("sirenmod:textures/blocks/MountedSirenController/MountedSirenControllerArmed.png"));
         	   this.bindTexture(textures);
-    	   } else if (tile.state == "blue"){
+    	   } else if (tile.state.equals("blue")){
     		   ResourceLocation textures = (new ResourceLocation("sirenmod:textures/blocks/MountedSirenController/MountedSirenControllerTesting.png"));
         	   this.bindTexture(textures);
-    	   } else if (tile.state == "waiting"){
+    	   } else if (tile.state.equals("waiting")){
     		   ResourceLocation textures = (new ResourceLocation("sirenmod:textures/blocks/MountedSirenController/MountedSirenControllerWaiting.png"));
         	   this.bindTexture(textures);
     	   }

@@ -5,6 +5,7 @@ import TheRealMcrafter.SirenMod.tiles.BurglarSirenTileEntity;
 import TheRealMcrafter.SirenMod.tiles.FireAlarmTileEntity;
 import TheRealMcrafter.SirenMod.tiles.GeneralSirenTileEntity;
 import TheRealMcrafter.SirenMod.tiles.NuclearSirenTileEntity;
+import TheRealMcrafter.SirenMod.tiles.SmokeDetectorTileEntity;
 import net.minecraft.client.audio.MovingSound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
@@ -26,6 +27,8 @@ public TileEntity tile;
     	} else if (tile instanceof FireAlarmTileEntity){
             volume = 5.0F;
     	} else if (tile instanceof AmericanSignalT121TileEntity){
+            volume = 20.0F;
+    	} else if (tile instanceof SmokeDetectorTileEntity){
             volume = 20.0F;
 
     	} else {
@@ -52,6 +55,9 @@ public TileEntity tile;
                 this.donePlaying = true;}
     	} else if (tile instanceof AmericanSignalT121TileEntity){
     		if (((AmericanSignalT121TileEntity) tile).isShouldStop() || ((AmericanSignalT121TileEntity) tile).isInvalid()){    
+                this.donePlaying = true;}
+    	} else if (tile instanceof SmokeDetectorTileEntity){
+    		if (((SmokeDetectorTileEntity) tile).isShouldStop() || ((SmokeDetectorTileEntity) tile).isInvalid()){    
                 this.donePlaying = true;}
     	} else {
     		throw new ClassCastException();

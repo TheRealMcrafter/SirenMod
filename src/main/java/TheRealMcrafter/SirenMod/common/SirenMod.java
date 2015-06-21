@@ -36,7 +36,7 @@ public class SirenMod {
 	@Instance(value="SirenMod")
 	public static SirenMod instance;
 	public static final String modID = "SirenMod";
-	public static final String VERSION = "4.0.0";
+	public static final String VERSION = "4.0.2";
 	public static CreativeTabs SirenModCreativeTab = new SirenModCreativeTab(CreativeTabs.getNextID(), "TheRealMcrafter's Siren Mod");
 	@SidedProxy(clientSide = "TheRealMcrafter.SirenMod.client.SirenModClientProxy", serverSide = "TheRealMcrafter.SirenMod.common.SirenModCommonProxy") //Tells Forge the location of your proxies
 	public static SirenModCommonProxy proxy;

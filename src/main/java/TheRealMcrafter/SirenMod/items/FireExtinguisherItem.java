@@ -3,14 +3,13 @@ package TheRealMcrafter.SirenMod.items;
 import java.util.Random;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.audio.ISound;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import TheRealMcrafter.SirenMod.common.SirenMod;
@@ -35,6 +34,7 @@ public class FireExtinguisherItem extends Item {
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player){
 		Vec3 look = player.getLookVec();
 		Random rand = new Random();
+
 		
 		world.playSoundEffect(player.posX, player.posY, player.posZ, "sirenmod:fireExtinguisher", 1.0F, 1.0F);
 		for (int i = 0; i < 17; i ++){
@@ -58,7 +58,8 @@ public class FireExtinguisherItem extends Item {
 		}
 		return stack;		
 	}
-	
+
+
 @Override
 public boolean onItemUse(ItemStack itemstack, EntityPlayer player, World world, int x, int y, int z, int side, float blockHitX, float blockHitY, float blockHitZ){
     
