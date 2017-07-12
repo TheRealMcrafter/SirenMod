@@ -6,7 +6,9 @@ import net.minecraft.world.World;
 public class LoopingAudioHandler {
 	
 	public LoopingAudioHandler(World world, int x, int y, int z, String soundName){
-		SirenLooper looper = new SirenLooper(world.getTileEntity(x, y, z), soundName);
-		Minecraft.getMinecraft().getSoundHandler().playSound(looper);
+		if (world.getTileEntity(x, y, z), soundName != null) {
+			SirenLooper looper = new SirenLooper(world.getTileEntity(x, y, z), soundName);
+			Minecraft.getMinecraft().getSoundHandler().playSound(looper);
+		}
 	}
 }
