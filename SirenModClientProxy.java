@@ -1,0 +1,69 @@
+package TheRealMcrafter.SirenMod.client;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import TheRealMcrafter.SirenMod.TileEntity.AmericanSignalT121TileEntity;
+import TheRealMcrafter.SirenMod.TileEntity.BurglarSirenTileEntity;
+import TheRealMcrafter.SirenMod.TileEntity.FireAlarmTileEntity;
+import TheRealMcrafter.SirenMod.TileEntity.FireExtinguisherTileEntity;
+import TheRealMcrafter.SirenMod.TileEntity.GeneralSirenTileEntity;
+import TheRealMcrafter.SirenMod.TileEntity.MotionDetectorTileEntity;
+import TheRealMcrafter.SirenMod.TileEntity.NuclearSirenTileEntity;
+import TheRealMcrafter.SirenMod.TileEntity.ProximitySensorTileEntity;
+import TheRealMcrafter.SirenMod.TileEntity.SirenControllerTileEntity;
+import TheRealMcrafter.SirenMod.TileEntity.SirenPoleTileEntity;
+import TheRealMcrafter.SirenMod.TileEntity.SprinklerTileEntity;
+import TheRealMcrafter.SirenMod.client.render.AmericanSignalT121Renderer;
+import TheRealMcrafter.SirenMod.client.render.BurglarSirenRenderer;
+import TheRealMcrafter.SirenMod.client.render.FireAlarmRenderer;
+import TheRealMcrafter.SirenMod.client.render.FireExtinguisherRenderer;
+import TheRealMcrafter.SirenMod.client.render.GeneralSirenRenderer;
+import TheRealMcrafter.SirenMod.client.render.MotionDetectorRenderer;
+import TheRealMcrafter.SirenMod.client.render.NuclearSirenRenderer;
+import TheRealMcrafter.SirenMod.client.render.ProximitySensorRenderer;
+import TheRealMcrafter.SirenMod.client.render.SirenControllerRenderer;
+import TheRealMcrafter.SirenMod.client.render.SirenPoleRenderer;
+import TheRealMcrafter.SirenMod.client.render.SprinklerRenderer;
+import TheRealMcrafter.SirenMod.common.SirenMod;
+import TheRealMcrafter.SirenMod.common.SirenModCommonProxy;
+import TheRealMcrafter.SirenMod.common.VersionChecker;
+
+public class SirenModClientProxy extends SirenModCommonProxy {
+
+	public void registerRenderInformation() {
+		ClientRegistry.bindTileEntitySpecialRenderer(GeneralSirenTileEntity.class, new GeneralSirenRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(NuclearSirenTileEntity.class, new NuclearSirenRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(BurglarSirenTileEntity.class, new BurglarSirenRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(FireAlarmTileEntity.class, new FireAlarmRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(AmericanSignalT121TileEntity.class,
+				new AmericanSignalT121Renderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(SirenPoleTileEntity.class, new SirenPoleRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(ProximitySensorTileEntity.class, new ProximitySensorRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(SirenControllerTileEntity.class, new SirenControllerRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(MotionDetectorTileEntity.class, new MotionDetectorRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(SprinklerTileEntity.class, new SprinklerRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(FireExtinguisherTileEntity.class, new FireExtinguisherRenderer());
+
+	}
+
+	public void playSound(World world, int x, int y, int z, String soundName) {
+		Minecraft.getMinecraft().theWorld.playSound(x, y, z, soundName, 3.0F, 1.0F, true);
+	}
+
+	@Override
+	public EntityPlayer getPlayerEntity(MessageContext ctx) {
+		return (ctx.side.isClient() ? Minecraft.getMinecraft().thePlayer : super.getPlayerEntity(ctx));
+	}
+
+	@Override
+	public void postInit(FMLPostInitializationEvent event) {
+		super.postInit(event);
+		SirenMod.versionChecker = new VersionChecker();
+		Thread versionCheckThread = new Thread(SirenMod.versionChecker, "Version Check");
+		versionCheckThread.start();
+	}
+}
