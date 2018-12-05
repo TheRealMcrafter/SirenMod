@@ -1,8 +1,5 @@
 package TheRealMcrafter.SirenMod.common;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.world.World;
-import net.minecraftforge.oredict.OreDictionary;
 import TheRealMcrafter.SirenMod.blocks.AmericanSignalT121;
 import TheRealMcrafter.SirenMod.blocks.BurglarSiren;
 import TheRealMcrafter.SirenMod.blocks.FireAlarm;
@@ -33,11 +30,13 @@ import TheRealMcrafter.SirenMod.tiles.ProximitySensorTileEntity;
 import TheRealMcrafter.SirenMod.tiles.SirenControllerTileEntity;
 import TheRealMcrafter.SirenMod.tiles.SirenPoleTileEntity;
 import TheRealMcrafter.SirenMod.tiles.SprinklerTileEntity;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.network.IGuiHandler;
-import cpw.mods.fml.common.network.simpleimpl.MessageContext;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.LanguageRegistry;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.network.IGuiHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class SirenModCommonProxy implements IGuiHandler { 
 	
