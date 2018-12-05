@@ -8,6 +8,14 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.Mod.Instance;
+import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import TheRealMcrafter.SirenMod.CreativeTabs.SirenModCreativeTab;
 import TheRealMcrafter.SirenMod.WorldGeneration.SirenModWorldGen;
@@ -20,15 +28,6 @@ import TheRealMcrafter.SirenMod.tiles.GeneralSirenTileEntity;
 import TheRealMcrafter.SirenMod.tiles.BurglarSirenTileEntity;
 import TheRealMcrafter.SirenMod.tiles.FireAlarmTileEntity;
 import TheRealMcrafter.SirenMod.tiles.NuclearSirenTileEntity;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.LanguageRegistry;
 
 @Mod(modid = SirenMod.modID, version = SirenMod.VERSION, name = "TheRealMcrafter's SirenMod")
 
@@ -72,7 +71,7 @@ public class SirenMod {
 
 	
 	
-@EventHandler
+	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {		
 		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
 		config.load();
@@ -80,7 +79,7 @@ public class SirenMod {
 		config.save();
 	}
 
-@EventHandler
+	@EventHandler
 	public void load(FMLInitializationEvent event) {
 		
 		MinecraftForge.EVENT_BUS.register(new SirenModEventHandler());
@@ -100,63 +99,63 @@ public class SirenMod {
 		GameRegistry.addRecipe(new ItemStack(SirenMod.Wrench), 				" I ", 
 															   				" II",
 															   				"I  ",
-		        'I', Items.iron_ingot);
+		        'I', Items.IRON_INGOT);
 		
 		GameRegistry.addRecipe(new ItemStack(SirenMod.IntegratedCircuit), 	"RSR",
 																		  	"SES", 
 																		  	"RSR",
-		        'R', Items.redstone, 'S', SirenMod.SiliconShard, 'E', Items.ender_pearl);
+		        'R', Items.REDSTONE, 'S', SirenMod.SiliconShard, 'E', Items.ENDER_PEARL);
 		
 		GameRegistry.addRecipe(new ItemStack(SirenMod.Speaker), 			"III", 
 																			"ICI", 
 																			"III",
-		        'I', Items.iron_ingot, 'C', SirenMod.IntegratedCircuit);
+		        'I', Items.IRON_INGOT, 'C', SirenMod.IntegratedCircuit);
 		
 		
 		GameRegistry.addRecipe(new ItemStack(SirenMod.GeneralSirenItem),	"SIS", 
 																			"PPP",
-				'I', Items.iron_ingot, 'S', SirenMod.Speaker, 'P', Blocks.stone_slab);
+				'I', Items.IRON_INGOT, 'S', SirenMod.Speaker, 'P', Blocks.STONE_SLAB);
 		
 		GameRegistry.addRecipe(new ItemStack(SirenMod.NuclearSiren),		"SI ", 
 																			" I ",
 																			"PPP",
-				'I', Items.iron_ingot, 'S', SirenMod.Speaker, 'P', Blocks.stone_slab);
+				'I', Items.IRON_INGOT, 'S', SirenMod.Speaker, 'P', Blocks.STONE_SLAB);
 		
 		GameRegistry.addRecipe(new ItemStack(SirenMod.AmericanSignalT121),	"SIS", 
 																			"SIS",
 																			"PPP",
-				'I', Items.iron_ingot, 'S', SirenMod.Speaker, 'P', Blocks.stone_slab);
+				'I', Items.IRON_INGOT, 'S', SirenMod.Speaker, 'P', Blocks.STONE_SLAB);
 		
 		GameRegistry.addRecipe(new ItemStack(SirenMod.BurglarSiren),		"III", 
 																			"ISI",
 																			"III",
-				'I', Items.iron_ingot, 'S', SirenMod.Speaker);
+				'I', Items.IRON_INGOT, 'S', SirenMod.Speaker);
 		
 		GameRegistry.addRecipe(new ItemStack(SirenMod.FireAlarm),			"ISI", 
 																			"IGI",
 																			"III",
-				'I', Items.iron_ingot, 'S', SirenMod.Speaker, 'G', Blocks.glass);
+				'I', Items.IRON_INGOT, 'S', SirenMod.Speaker, 'G', Blocks.GLASS);
 		
 		GameRegistry.addRecipe(new ItemStack(SirenMod.SirenPole),			"I", 
 																			"I",
 																			"I",
-				'I', Items.iron_ingot);
+				'I', Items.IRON_INGOT);
 			
 		SirenModPacketDispatcher.registerPackets();
 	}
 
-@EventHandler
+	@EventHandler
 	public void postInit(FMLPostInitializationEvent event){
 		proxy.postInit(event);
 	}
 
 
-public static void registerItem(Item item, String name, String unlocalizedName) {
-    GameRegistry.registerItem(item, SirenMod.modID + unlocalizedName);
+	public static void registerItem(Item item, String name, String unlocalizedName) {
+		GameRegistry.registerItem(item, SirenMod.modID + unlocalizedName);
     LanguageRegistry.addName(item, name);}
 
-public static void registerBlock(Block block, String name, String unlocalizedName) {
-	GameRegistry.registerBlock(block, SirenMod.modID + unlocalizedName);
+	public static void registerBlock(Block block, String name, String unlocalizedName) {
+		GameRegistry.registerBlock(block, SirenMod.modID + unlocalizedName);
 	LanguageRegistry.addName(block, name);}
 
 }

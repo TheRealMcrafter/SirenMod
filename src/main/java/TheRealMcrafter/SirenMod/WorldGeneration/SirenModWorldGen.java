@@ -4,13 +4,13 @@ import java.util.Random;
 
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.WorldGenMinable;
+import net.minecraftforge.fml.common.IWorldGenerator;
 import TheRealMcrafter.SirenMod.common.SirenMod;
-import cpw.mods.fml.common.IWorldGenerator;
 
 public class SirenModWorldGen implements IWorldGenerator {
 
-	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
 		switch (world.provider.dimensionId) {
 			case 0:
@@ -29,5 +29,12 @@ public class SirenModWorldGen implements IWorldGenerator {
 				(new WorldGenMinable(SirenMod.SiliconOre, 4)).generate(world, random, Xcoord, Ycoord, Zcoord);
 			}
 		}
+	}
+
+	@Override
+	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator,
+			IChunkProvider chunkProvider) {
+		// TODO Auto-generated method stub
+		
 	}
 }

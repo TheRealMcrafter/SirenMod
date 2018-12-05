@@ -26,7 +26,7 @@ public class BurglarSiren extends BlockContainer {
 	
 	
 	public BurglarSiren(String textureName) {
-		super(Material.piston);
+		super(Material.PISTON);
 		this.textureName = textureName;
 		this.setCreativeTab(SirenMod.SirenModCreativeTab);
 		setBlockName(textureName);

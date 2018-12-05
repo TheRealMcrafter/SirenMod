@@ -18,7 +18,8 @@ public class VersionChecker implements Runnable
     /* (non-Javadoc)
      * @see java.lang.Runnable#run()
      */
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public void run() 
     {
         InputStream in = null;

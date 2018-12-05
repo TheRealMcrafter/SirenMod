@@ -33,7 +33,7 @@ import net.minecraft.world.World;
 		public String textureName;
 		
 		public NuclearSiren(String textureName) {
-				super(Material.piston);
+				super(Material.PISTON);
 				this.textureName = textureName;
 				this.setCreativeTab(SirenMod.SirenModCreativeTab);
 				setBlockName(textureName);

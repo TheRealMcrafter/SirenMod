@@ -15,10 +15,15 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
+
+
 public class AmericanSignalT121 extends BlockContainer {
 
+
+	public String textureName;
+
 	public AmericanSignalT121(String textureName) {
-		super(Material.piston);
+		super(Material.PISTON);
 		this.textureName = textureName;
 		this.setCreativeTab(SirenMod.SirenModCreativeTab);
 		setBlockName(textureName);
